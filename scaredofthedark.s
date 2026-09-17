@@ -77,55 +77,6 @@ press_anything_msg: .string "'r' to Restart, 'q' to Exit, OTHER for Next Round"
 
 _start:
 	
-	# References:
-	# [1] Marsaglia, G. Xorshift RNGs, Journal of Statistical Software. Retrieved October
-	# 17, 2025 from https://www.jstatsoft.org/article/view/v008i14.
-	
-	# Enhancement 1:
-	# (a) I have implemented the multi-player (competitive) mode enhancement.
-	#
-	# (b) & (c)
-	#
-	# bubble_sort_4, outer_loop, inner_loop, swap 
-	# 
-	# Implemented a bubble sort algorithm that specifically
-	# sorts parallelFearGauge in ascending order, and matches the swaps over
-	# to parallelTrackPlayer. These are .byte pointers in memory, as seen
-	# in .data. This data will eventually be used to print the standings
-	# in order accordingly for the implementation of the leaderboard.
-	#
-	# store_round_snapshot, load_round_snapshot
-	#
-	# Implemented two functions that stores the round's map (when it's randomly
-	# created for the first player) into memory and loads the round's map back
-	# into the game when its another player's turn other than the first player.
-	#
-	# display_player_n, turn_over_msg, turn_end
-	# 
-	# Throughout these lines, I keep track of the current
-	# player as turns go on, and if the current player matches the total
-	# amount of players, which is initially prompted when the game is started,
-	# a round is finished and the leaderboard can be viewed. In display_player_n,
-	# it allows users to see who's turn is it. Note that when a turn is over,
-	# in turn_end, the fear gauge of a player after their turn is done gets 
-	# added onto their respective total, which is stored in totalFearGauge in .data.
-	#
-	# pregameprompts
-	#
-	# This is the prompt function that gets shown when the
-	# game starts. It asks how many players the game will have, which I set a
-	# limited response, which is 1 to 4.
-	#
-	# display_standings
-	#
-	# This is the function responsible for displaying the leaderboard after
-	# all players have completed their turns, and a round is over. The ranking
-	# is given by the bubble_sort_4 function which was stated earlier. It displays
-	# a ranking based on the total fear gauges of each player in ascending order,
-	# as the less fear gauge a player has recieved throughout their turns, the
-	# better they have performed.
-	#
-	
 	j play_game
 	
 exit:
@@ -175,7 +126,6 @@ restart:
 	j play_game
     
 # --- HELPER FUNCTIONS ---
-# Feel free to use, modify, or add to them however you see fit.
      
 # Arguments: an integer MAX in a0
 # Return: A number from 0 (inclusive) to MAX (exclusive)
